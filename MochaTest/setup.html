@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Document</title>
+</head>
+<body>
+Steps for Mocha Test -
+1. npm init and follow the init steps
+2. Run command to install mocha, mongoose and nodemon - npm install mocha mongoose nodemon
+3. Create app and test dir inside MochaTest dir
+4. create student.js file and define the schema for student
+5. Create all the test file inside test dir and write the test code for Create, Read, Update and Delete Test
+6. For simple console.log('xyz') we won't get error but when we use 'before' , 'describe' etc then we get the error msg: before not defined. It's because we are not using mocha for testing as of now so test with mocha we need to make changes in package.json file -
+
+"scripts": {
+    "test": "mocha"
+  },
+
+We need to set "mocha" in test scripts then
+
+7. Open shell and moce to MochaTest dir and Run command to execute the test - npm run test
+</body>
+</html>

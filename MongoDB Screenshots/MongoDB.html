@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Commands used in terminal for mongodb - 
+1. show dbs
+2. use dbname i.e use students
+Note: untill and unless we store/save the date or collection into it, it's not gonna show when we run show dbs
+3. https://docs.mongodb.com/manual/crud/#create-operations
+
+[
+    {
+        "name": "Animesh",
+        "email": "animesh.ultimate@gmail.com",
+        "contact": "6363967482",
+        "courseCount": 4,
+        "isVerified": true
+    }, 
+    {
+        "name": "Animesh",
+        "email": "kumar.animesh303@gmail.com",
+        "contact": "7767985032",
+        "courseCount": 2,
+        "isVerified": false
+    }
+]
+
+4. db.studentData.insertOne({ //to insert the data
+        "name": "Animesh",
+        "email": "animesh.ultimate@gmail.com",
+        "contact": "6363967482",
+        "courseCount": 4,
+        "isVerified": true
+    })
+
+5. db.studentData.find() //to read the data
+6. db.studentData.find().pretty()
+Note: If you close the cmd promt and later when you try to find the data it's not gonna return any data because we haven't used save command to persists the data into the database.
+7. db.studentData.insertOne({ //another way of writting json data
+    email: "animesh.ultimate@gmail.com",
+    contact: "026363967482"
+})
+
+8. db.studentData.deleteOne({email: "animesh.ultimate01@gmail.com"})
+
+9.  db.studentData.updateOne({courseCount: 4}, {$set: {fbloggedIn: "yes"}})
+10.  db.studentData.insertOne({contact: "026363967482"}, {$set: {fbloggedIn: "yes"}})
+
+11.  db.studentData.updateMany({fbloggedIn: "yes"}, {$set: {delete: "yes"}})
+
+12.  db.studentData.deleteMany({})
+
+13.  db.studentData.deleteMany({delete: "yes"})
+
+14. db.studentData.insertMany([
+{
+    "name": "Animesh",
+    "email": "animesh.ultimate@gmail.com",
+    "contact": "6363967482",
+    "courseCount": 4,
+    "isVerified": true
+}, 
+{
+    "name": "Animesh",
+    "email": "kumar.animesh303@gmail.com",
+    "contact": "7767985032",
+    "courseCount": 2,
+    "isVerified": false
+}
+])
+
+15. db.studentData.find({courseCount: 4}).pretty() //finds all data where courseCount is 4
+16. db.studentData.findOne({courseCount: 4}).pretty() //gives error as pretty doesn't support with findOne
+17. db.studentData.findOne({courseCount: 4}) //returns first matching data
+
+18. db.studentData.find({courseCount: {$set: 1}}).pretty()
+$lte
+$gt
+$gte
+
+19. db.studentData.update({courseCount: 4}, {fbloggedIn: "yes"})
+
+20. db.studentData.find() or db.studentData.find().pretty() is Never used in reality. It's is just for cmd/shell.
+
+21. db.studentData.find().forEach( (student) => {printjson(student)}) - In realtime programming we use like this to fetch all data
+
+22. db.studentData.find() - gives the cursor object i.e it's not actual data but meta data i.e info about info which we want to get
+
+23. db.studentData.find().forEach( (student) => {printjson(student.email)})
+
+saving bandwidth
+24. db.studentData.find({}, {}) - return everything
+25. db.studentData.find({}, {email: 1}) - return _id, email - it saving bandwith as it executing on MongoDB server, by default it is - "_id:1"
+26. db.studentData.find({}, {email: 1, _id: 0, name: 1}) - return email, name only
+27. db.studentData.find({}, {email: 1, _id: 0}).toArray()
+
+Note: use oldStudents - Switch to old students db
+28. db.studentData.updateMany({}, {$set: {profilepic: {small: 50, med: 100, large: 200}}})
+29. db.studentData.find({"profilepic.med": 100}) - Intentally added "" here in ("profilepic.med": 100) - Note - if dot or space anything is there then need to put under ""
+
+Assignment - db.studentData.updateOne({name: "Animesh"}, {$set: {"profilepic.large": 500}})
+db.studentData.find({"profilepic.large": 500})
+
+30. db.studentData.updateOne({name: "Animesh"}, {$set: {lastlogin: ["Monday", "Tudesday", "Wednesday"]}})
+
+31. db.studentData.findOne({name: "Animesh"}).lastlogin - it wont work on find() 
+
+<============Schema in MongoDB======================>
+
+32. db.course.insertOne({name: "Java Bootcamp", price: 10})
+
+32. db.course.insertOne({name: "Android P", price: 10, faq: {q1: "answer1", q2: "answer2"}}) - Any time we can add additional column which we can't do in mysql db
+
+33. db.course.find({name: "Android P"}).pretty()
+
+<=============== Modeling Database ==================>
+Relations => One document interacts with another document
+1. One to One
+2. One to Many
+3. Many to Many
+</body>
+</html>
